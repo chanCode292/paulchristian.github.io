@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+ 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+ 
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #1e1b29;
+}
+ 
+.container {
+    display: flex;
+    width: 80%;
+    max-width: 1000px;
+    background: #f9f8ff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+}
+ 
+ 
+.left-panel {
+    width: 45%;
+    background: url('image/background.jpg') center/cover no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+ 
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 20px;
+}
+ 
+.overlay-text h2 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.content .logo{
+    max-width: 640px;
+    height: auto;
+    display: inline-block;
+    max-height: 100%;
+    border-radius: 8px;
+
+}
+ 
+
+.right-panel {
+    width: 55%;
+    background: #494850;
+    padding: 40px;
+    text-align: center;
+    color: white;
+}
+ 
+.right-panel h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+ 
+.right-panel p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+ 
+.right-panel a {
+    color: #a385ff;
+    text-decoration: none;
+}
+ 
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+ 
+.name-fields {
+    display: flex;
+    gap: 10px;
+}
+ 
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 14px;
+}
+ 
+.footer {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f8ff;
+    color: rgb(0, 0, 0);
+    position: absolute;
+    bottom: 0;
+  }
+  
+
+.terms {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+ 
+.terms input {
+    width: auto;
+    margin-right: 8px;
+}
+
+button {
+    background: #a385ff;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+ 
+button:hover {
+    background: #7a5dd1;
+}
+ 
+.social-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+ 
+.google,
+.apple {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+ 
+.google {
+    background: white;
+    color: black;
+}
+ 
+.apple {
+    background: black;
+    color: white;
+}
+
+
+
+
+

@@ -34,6 +34,273 @@
       
    </head>
 
+   <style>
+    /* Mobile Responsive Styles for Paul Jabido's Portfolio */
+
+    /* Base responsive settings */
+    @media screen and (max-width: 768px) {
+      /* General adjustments */
+      html, body {
+        overflow-x: hidden;
+        width: 100%;
+      }
+      
+      .container {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+      }
+      
+      .container.medium {
+        width: 100%;
+      }
+      
+      /* Header adjustments */
+      .home-header .big-name .name-h1 h1 {
+        font-size: 32px;
+        line-height: 1.2;
+        white-space: normal;
+      }
+      
+      .home-header .big-name .name-h1 {
+        padding-left: 20px;
+      }
+      
+      .home-header .personal-image img {
+        max-width: 100%;
+        height: auto;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+      
+      .home-header .hanger {
+        display: none; /* Hide on mobile or adjust its size */
+      }
+      
+      /* Navigation adjustments */
+      .nav-bar {
+        padding: 15px;
+      }
+      
+      .nav-bar .credits-top {
+        position: relative;
+        float: left;
+      }
+      
+      .fixed-nav {
+        width: 100%;
+      }
+      
+      .fixed-nav-inner {
+        padding: 20px;
+      }
+      
+      .btn-hamburger {
+        top: 15px;
+        right: 15px;
+        z-index: 1000;
+      }
+      
+      /* Introduction text adjustments */
+      .home-intro h4 {
+        font-size: 20px;
+        line-height: 1.4;
+      }
+      
+      .text-wrap p {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      
+      /* Work grid adjustments */
+      .work-grid .work-items li .row {
+        flex-direction: column;
+      }
+      
+      .work-grid .work-items li .flex-col {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      
+      .work-grid .work-items li h4 {
+        font-size: 24px;
+      }
+      
+      /* Footer adjustments */
+      .footer-wrap h2 {
+        font-size: 28px;
+        line-height: 1.2;
+      }
+      
+      .bottom-footer {
+        flex-direction: column;
+      }
+      
+      .bottom-footer .flex-col {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      
+      /* Button adjustments */
+      .btn-normal .btn-text {
+        font-size: 16px;
+      }
+      
+      .btn-round {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .btn-round .btn-text {
+        font-size: 14px;
+      }
+    }
+
+    /* Small mobile devices */
+    @media screen and (max-width: 480px) {
+      /* Further reduced text sizes */
+      .home-header .big-name .name-h1 h1 {
+        font-size: 24px;
+      }
+      
+      .home-intro h4 {
+        font-size: 18px;
+      }
+      
+      .work-grid .work-items li h4 {
+        font-size: 20px;
+      }
+      
+      .footer-wrap h2 {
+        font-size: 24px;
+      }
+      
+      /* Adjust spacing */
+      .section {
+        padding: 40px 0;
+      }
+      
+      /* Adjust header elements */
+      .header-above-h4 {
+        display: none;
+      }
+      
+      /* Make sure images don't overflow */
+      img, video {
+        max-width: 100%;
+        height: auto;
+      }
+      
+      /* Adjust the digital ball size */
+      .digital-ball {
+        transform: scale(0.7);
+      }
+      
+      /* Navigation adjustments */
+      .fixed-nav ul.links-wrap li {
+        margin-bottom: 15px;
+      }
+      
+      /* Fix spacing in footer contact info */
+      .footer .btn-normal {
+        margin-bottom: 15px;
+      }
+      
+      /* Improve tap targets for mobile */
+      .btn-click, 
+      a.btn-click, 
+      li.btn-link a {
+        padding: 10px 0;
+        display: inline-block;
+      }
+      
+      /* Fix horizontal scrolling issues */
+      .horizontal-items .row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 20px;
+      }
+      
+      .horizontal-items .flex-col {
+        min-width: 85%;
+        margin-right: 15px;
+      }
+      
+      /* Fix scroll animations that might cause issues on mobile */
+      [data-scroll-direction="horizontal"] {
+        transform: none !important;
+      }
+    }
+
+    /* Fix for specific interactive elements */
+    @media screen and (max-width: 768px) {
+      /* Make mouse interaction elements work better on touch */
+      .mouse-pos-list-image-bounce,
+      .mouse-pos-list-btn,
+      .mouse-pos-list-span {
+        display: none;
+      }
+      
+      /* Fix any magnetic buttons for touch */
+      .magnetic {
+        transform: none !important;
+      }
+      
+      /* Ensure videos are properly sized */
+      .playpauze video {
+        width: 100%;
+        height: auto;
+      }
+      
+      /* Fix for loading screen */
+      .loading-container {
+        width: 100%;
+      }
+      
+      .loading-screen {
+        width: 100%;
+      }
+      
+      /* Fix for menu animation */
+      .btn-menu {
+        display: block;
+      }
+      
+      /* Improve visual hierarchy */
+      .stripe {
+        margin: 20px 0;
+      }
+      
+      /* Add these fixes for better touch experience */
+      .fixed-nav.active {
+        transform: translateX(0) !important;
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .fixed-nav-back.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      a.btn-click.hover, 
+      .btn-click.hover {
+        opacity: 0.8;
+      }
+    }
+ </style>
+
+
+
+
+
+
+
+
     <body data-barba="wrapper">
         <div class="no-scroll-overlay"></div>
         <div class="loading-container">

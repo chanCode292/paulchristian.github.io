@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <title>Jabido Paul - Educational Background</title>
+      <meta name="description" content="Educational background and academic journey of Paul Jabido"/>
+      <meta property="og:title" content="Educational Background - Paul Jabido"/>
+      <meta property="og:description" content="Educational background and academic journey of Paul Jabido"/>
+      <meta property="og:locale" content="en"/>
+      <meta property="og:type" content="website"/>
+      <meta name="twitter:card" content="summary_large_image"/>
+      <meta name="google" content="notranslate"/>
+      
+      <link rel="preload" as="font" href="https://dennissnellenberg.com/assets/fonts/NeueMontreal-Regular.otf" type="font/otf" crossorigin="anonymous">
+      <link href="https://dennissnellenberg.com/assets/css/normalize.css" rel="stylesheet">
+      <link href="https://dennissnellenberg.com/assets/css/locomotive-scroll.css" rel="stylesheet">
+      <link href="https://dennissnellenberg.com/assets/css/styleguide.css" rel="stylesheet">
+      <link href="https://dennissnellenberg.com/assets/css/components.css" rel="stylesheet">
+      <link href="https://dennissnellenberg.com/assets/css/style-new.css" rel="stylesheet">
+      
+      <style>
+         /* Education grid styles */
+         .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+         }
+         
+         .education-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+         }
+         
+         .education-card:hover {
+            transform: translateY(-5px);
+         }
+         
+         .card-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+         }
+         
+         .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+         }
+         
+         .card-content {
+            padding: 20px;
+         }
+         
+         .card-content h3 {
+            margin-top: 0;
+            font-size: 24px;
+         }
+         
+         .card-content p {
+            margin: 8px 0;
+            color: #666;
+            line-height: 1.5;
+         }
+         
+         .card-content .location {
+            font-style: italic;
+         }
+         
+         .card-content .year {
+            color: #999;
+            font-weight: 600;
+         }
+         
+         /* Education timeline */
+         .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 20px 0;
+         }
+         
+         .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: #ddd;
+            transform: translateX(-50%);
+         }
+         
+         .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            width: 50%;
+            padding: 0 40px;
+         }
+         
+         .timeline-item:nth-child(odd) {
+            left: 0;
+         }
+         
+         .timeline-item:nth-child(even) {
+            left: 50%;
+         }
+         
+         .timeline-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+         }
+         
+         .timeline-content h3 {
+            margin-top: 0;
+            color: #333;
+         }
+         
+         .timeline-content p {
+            margin: 8px 0;
+            line-height: 1.5;
+         }
+         
+         .timeline-content .date {
+            color: #999;
+            font-weight: 600;
+         }
+         
+         /* Responsive adjustments */
+         @media (max-width: 768px) {
+            .education-grid {
+               grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+               left: 30px;
+            }
+            
+            .timeline-item {
+               width: 100%;
+               padding-left: 60px;
+               padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+               left: 0;
+            }
+         }
+         
+         .subtitle {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 20px;
+            color: #666;
+         }
+      </style>
+   </head>
+
+   <body data-barba="wrapper">
+      <div class="no-scroll-overlay"></div>
+      <div class="loading-container">
+         <div class="loading-screen">
+            <div class="rounded-div-wrap top">
+               <div class="rounded-div"></div>
+            </div>
+            <div class="loading-words">
+               <h2 class="home-active home-active-first">Hello<div class="dot"></div></h2>
+               <h2 class="home-active">Bonjour<div class="dot"></div></h2>
+               <h2 class="home-active">स्वागत हे<div class="dot"></div></h2>
+               <h2 class="home-active">Ciao<div class="dot"></div></h2>
+               <h2 class="home-active">Olá<div class="dot"></div></h2>
+               <h2 class="home-active jap">おい<div class="dot"></div></h2>
+               <h2 class="home-active">Hallå<div class="dot"></div></h2>
+               <h2 class="home-active">Guten tag<div class="dot"></div></h2>
+               <h2 class="home-active-last">Hallo<div class="dot"></div></h2>
+               <h2>Home<div class="dot"></div></h2>
+               <h2 class="active">Educational Background<div class="dot"></div></h2>
+            </div>
+            <div class="rounded-div-wrap bottom">
+               <div class="rounded-div"></div>
+            </div>
+         </div>
+      </div>
+      
+      <main class="main" id="work" data-barba="container" data-barba-namespace="work">
+         <div class="mouse-pos-list-image no-select">
+            <div class="mouse-pos-list-image-bounce overlay">
+               <div class="float-image-wrap">
+                  <li class="mouse-pos-list-image-inner development interaction visible">
+                     <div class="overlay overlay-image lazy" style="background-color: #F1F1F1; background-position: center center; background-repeat: no-repeat; background-size: cover;" data-bg="educ1"></div>
+                  </li>
+               </div>
+            </div>
+         </div>
+         
+         <div class="mouse-pos-list-btn no-select"></div>
+         <div class="mouse-pos-list-span no-select"><p>View</p></div>
+         
+         <div class="btn btn-hamburger">
+            <div class="btn-click magnetic" data-strength="50" data-strength-text="25">
+               <div class="btn-fill"></div>
+               <div class="btn-text">
+                  <div class="btn-bars"></div>
+                  <span class="btn-text-inner">Menu</span>
+               </div>
+            </div>
+         </div>
+         
+         <div class="overlay fixed-nav-back"></div>
+         <div class="fixed-nav theme-dark">
+            <div class="fixed-nav-rounded-div">
+               <div class="rounded-div-wrap">
+                  <div class="rounded-div"></div>
+               </div>
+            </div>
+            <div class="fixed-nav-inner">
+               <div class="row nav-row">
+                  <h5>Navigation</h5>
+                  <div class="stripe"></div>
+                  <ul class="links-wrap">
+                     <li class="btn btn-link">
+                        <a href="sample.html" class="btn-click magnetic" data-strength="24" data-strength-text="12">
+                           <span class="btn-text">
+                              <span class="btn-text-inner">Home</span>
+                           </span>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         
+         <div class="main-wrap" data-scroll-container>
+            <header class="section default-header work-header" data-scroll-section>
+               <div class="nav-bar">
+                  <div class="credits-top">
+                     <div class="btn btn-link btn-left-top">
+                        <a href="#" class="btn-click magnetic" data-strength="20" data-strength-text="10">
+                           <span class="btn-text">
+                              <div class="credit"><span>©</span></div>
+                              <div class="cbd">
+                                 <span class="code-by">Code by </span>
+                                 <span class="dennis">
+                                    <span class="dennis-span">Paul</span> 
+                                    <span class="snellenberg">Jabido</span>
+                                 </span>
+                              </div>
+                           </span>
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               
+               <div class="container medium">
+                  <div class="row">
+                     <div class="flex-col once-in">
+                        <h1><span>Educational </span><span>Background</span></h1>
+                     </div>
+                  </div>
+               </div>
+            </header>
+            
+          
+            
+            <!-- Footer Section -->
+            <div class="footer-rounded-div" data-scroll-section>
+               <div class="rounded-div-wrap">
+                  <div class="rounded-div"></div>
+               </div>
+            </div>
+            
+            <div class="footer-wrap footer-footer-wrap theme-dark" data-scroll-section>
+               <footer class="section footer" data-scroll data-scroll-speed="-4" data-scroll-position="bottom">
+                  <div class="container medium">
+                     <div class="row">
+                        <div class="flex-col">
+                           <div class="arrow">
+                              <?xml version="1.0" encoding="UTF-8"?>
+                              <svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                 <title>arrow-up-right</title>
+                                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="Artboard" transform="translate(-1019.000000, -279.000000)" stroke="#FFFFFF" stroke-width="1.5">
+                                       <g id="arrow-up-right" transform="translate(1026.000000, 286.000000) rotate(90.000000) translate(-1026.000000, -286.000000) translate(1020.000000, 280.000000)">
+                                          <polyline id="Path" points="2.76923077 0 12 0 12 9.23076923"></polyline>
+                                          <line x1="12" y1="0" x2="0" y2="12" id="Path"></line>
+                                       </g>
+                                    </g>
+                                 </g>
+                              </svg>
+                           </div>
+                           <h2><span><div class="final2.jpg"></div> Let's work </span><span>together</span></h2>
+                        </div>
+                     </div>
+                     
+                     <div class="row">
+                        <div class="flex-col">
+                           <div class="stripe"></div>
+                           <div class="btn-fixed">
+                              <div class="btn btn-round" data-scroll data-scroll-speed="-1" data-scroll-direction="horizontal" data-scroll-position="bottom" data-scroll-offset="-50%, 0">
+                                 <a href="" class="btn-click magnetic " data-strength="100" data-strength-text="50">
+                                    <div class="btn-fill"></div>
+                                    <span class="btn-text">
+                                       <span class="btn-text-inner">Get in touch</span>
+                                    </span>
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <div class="row">
+                        <div class="flex-col">
+                           <div class="btn btn-normal">
+                              <a href="mailto:info@paulchristian.jabido@cit.edu" class="btn-click magnetic" data-strength="25" data-strength-text="15">
+                                 <div class="btn-fill"></div>
+                                 <span class="btn-text">
+                                    <span class="btn-text-inner change">info@paulchristian.jabido@cit.edu</span>
+                                 </span>
+                              </a>
+                           </div>
+                           <div class="btn btn-normal">
+                              <a href="tel:+95672523082" class="btn-click magnetic" data-strength="25" data-strength-text="15">
+                                 <div class="btn-fill"></div>
+                                 <span class="btn-text">
+                                    <span class="btn-text-inner change">+ 95 67 25 23 08</span>
+                                 </span>
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  
+                  <div class="container no-padding">
+                     <div class="row bottom-footer">
+                        <div class="flex-col">
+                           <div class="credits">
+                              <h5>Version</h5>
+                              <p>2025 © Edition</p>
+                           </div>
+                           <div class="time"></div>
+                        </div>
+                        <div class="flex-col">
+                           <div class="socials">
+                              <h5>Socials</h5>
+                              <ul>
+                                 <li class="btn btn-link btn-link-external">
+                                    <a href="https://www.instagram.com/p.chan19?igsh=MWZiY3d6azBoMGI5bQ==" target="_blank" class="btn-click magnetic" data-strength="20" data-strength-text="10">
+                                       <span class="btn-text">
+                                          <span class="btn-text-inner">Instagram</span>
+                                       </span>
+                                    </a>
+                                 </li>
+                                 <li class="btn btn-link btn-link-external">
+                                    <a href="https://www.facebook.com/paul.jabido.1" target="_blank" class="btn-click magnetic" data-strength="20" data-strength-text="10">
+                                       <span class="btn-text">
+                                          <span class="btn-text-inner">Facebook</span>
+                                       </span>
+                                    </a>
+                                 </li>
+                                 <li class="btn btn-link btn-link-external">
+                                    <a href="https://www.tiktok.com/@sly.vocals" target="_blank" class="btn-click magnetic" data-strength="20" data-strength-text="10">
+                                       <span class="btn-text">
+                                          <span class="btn-text-inner">Tiktok</span>
+                                       </span>
+                                    </a>
+                                 </li>
+                              </ul>
+                              <div class="stripe"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </footer>
+               <div class="overlay overlay-gradient"></div>
+            </div>
+         </div>
+      </main>
+      
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.10.3"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.6.1/dist/lazyload.min.js"></script>
+      <script src="https://dennissnellenberg.com/assets/js/locomotive-scroll.min.js"></script>
+      <script defer src="https://dennissnellenberg.com/assets/js/index-new.js"></script>
+   </body>
+</html>

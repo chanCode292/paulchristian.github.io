@@ -28,7 +28,7 @@
             position: relative;
             height: 100vh;
             width: 100vw;
-            background-color: #f1f1f1;
+            background-color: #bbb1a4;
         }
 
         #page1,
@@ -37,7 +37,7 @@
             position: relative;
             height: 100vh;
             width: 100vw;
-            background-color: #f1f1f1;
+            background-color: #bbb1a4;
         }
 
         #canvas-container {
@@ -46,17 +46,17 @@
             width: 100vw;
             top: 0;
             left: 0;
-            z-index: 2; /* Increased z-index to be above the loop */
+            z-index: 2;
             pointer-events: none;
         }
 
         canvas {
             position: absolute;
-            bottom: 0; /* Position at bottom */
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            max-width: 100vw; /* Full width to remove gap */
-            max-height: 100vh; /* Full height */
+            max-width: 100vw;
+            max-height: 100vh;
             pointer-events: none;
         }
 
@@ -69,7 +69,7 @@
             font-size: 100px;
             white-space: nowrap;
             font-family: gilroy;
-            z-index: 1; /* Reduced z-index to be behind the character */
+            z-index: 1;
         }
 
         #loop>h1 {
@@ -111,8 +111,8 @@
             font-family: gilroy;
             font-weight: 400;
             font-size: 22px;
-            cursor: pointer; /* Add cursor pointer to indicate it's interactive */
-            transition: all 0.3s ease; /* Smooth transition for hover effect */
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         #nav>button {
@@ -224,13 +224,12 @@
             font-size: 70px;
         }
 
-        /* Clickable box styles */
         .cta-box {
             position: absolute;
             z-index: 50;
             padding: 15px 30px;
-            background-color: #ffffff;
-            color: #fff;
+            background-color: rgb(255, 255, 255);
+            color: rgb(131, 109, 81);
             text-decoration: none;
             border-radius: 50px;
             font-weight: 500;
@@ -247,7 +246,6 @@
             box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
         }
 
-        /* Modified box positioning - removed #join-box from canvas */
         #page1 .cta-box {
             bottom: 25%;
             left: 10%;
@@ -262,23 +260,244 @@
             bottom: 25%;
             left: 10%;
         }
+
+        .vid video {
+            width: 400px;
+            height: 350px;
+        }
+
+        /* RESPONSIVE STYLES */
+        @media (max-width: 1024px) {
+            #loop {
+                font-size: 70px;
+            }
+            
+            #page1>#left-text>h1,
+            #page1>#right-text>h1 {
+                font-size: 40px;
+            }
+            
+            #page2>#text1>h1 {
+                font-size: 45px;
+            }
+            
+            #page3>#text3>h1 {
+                font-size: 50px;
+            }
+            
+            .vid video,
+            .cta-box video {
+                width: 350px;
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #nav>h3 {
+                font-size: 18px;
+            }
+            
+            #nav>button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            
+            #loop {
+                font-size: 50px;
+                top: 25%;
+            }
+
+            #page>h3 {
+                font-size: 16px;
+                top: 50%;
+                left: 5%;
+                width: 90%;
+            }
+            
+            #page1>#left-text>h1,
+            #page1>#right-text>h1 {
+                font-size: 32px;
+            }
+            
+            #page2>#text1>h1 {
+                font-size: 36px;
+            }
+            
+            #page3>#text3>h1 {
+                font-size: 40px;
+            }
+            
+            .vid video,
+            .cta-box video {
+                width: 300px;
+                height: 260px;
+            }
+            
+            #page1 .cta-box,
+            #page3 .cta-box {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            #page2 .cta-box {
+                right: 50%;
+                transform: translateX(50%);
+            }
+            
+            .cta-box:hover {
+                transform: translateY(-5px) translateX(-50%);
+            }
+            
+            #page2 .cta-box:hover {
+                transform: translateY(-5px) translateX(50%);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            #nav {
+                padding: 0 15px;
+                height: 10%;
+            }
+            
+            #nav>h3 {
+                font-size: 16px;
+            }
+            
+            #nav>button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            
+            #loop {
+                font-size: 30px;
+                height: 15%;
+            }
+            
+            #loop>h1>span {
+                -webkit-text-stroke: 0.8px #000;
+            }
+            
+            #page>h3 {
+                font-size: 14px;
+                top: 45%;
+                width: 90%;
+            }
+            
+            #page1>#left-text {
+                top: 30%;
+                right: 5%;
+                width: 90%;
+            }
+            
+            #page1>#left-text>h1 {
+                font-size: 26px;
+            }
+            
+            #page1>#left-text>h3 {
+                font-size: 14px;
+            }
+            
+            #page2>#text1 {
+                top: 20%;
+                left: 5%;
+                width: 90%;
+            }
+            
+            #page2>#text1>h1 {
+                font-size: 28px;
+            }
+            
+            #page2>#text1>h3 {
+                font-size: 14px;
+            }
+            
+            #page3>#text3 {
+                top: 25%;
+                right: 5%;
+                width: 90%;
+            }
+            
+            #page3>#text3>h1 {
+                font-size: 30px;
+            }
+            
+            #page3>#text3>h3 {
+                font-size: 14px;
+            }
+            
+            .vid video,
+            .cta-box video {
+                width: 250px;
+                height: 220px;
+            }
+            
+            #page1 .cta-box,
+            #page2 .cta-box,
+            #page3 .cta-box {
+                bottom: 20%;
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            /* Adjust video container positioning */
+            .vid {
+                position: absolute;
+                bottom: 10%;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 50;
+            }
+        }
+        
+        /* For very small devices */
+        @media (max-width: 375px) {
+            #loop {
+                font-size: 24px;
+            }
+            
+            #page1>#left-text>h1 {
+                font-size: 22px;
+            }
+            
+            #page2>#text1>h1 {
+                font-size: 24px;
+            }
+            
+            #page3>#text3>h1 {
+                font-size: 26px;
+            }
+            
+            .vid video,
+            .cta-box video {
+                width: 200px;
+                height: 180px;
+            }
+            
+            #nav>h3 {
+                font-size: 14px;
+            }
+            
+            #nav>button {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
 </head>
 <body>
     <div id="nav">
         <h3><b> &#169; Code By </b>Paul*</h3>
-        <button>APRIL,2023</button>
+        <button> <a href="Jabido - CV.pdf" download="Jabido - CV.pdf" style="color: inherit; text-decoration: none;">CV Download</a></button>
     </div>
     <div id="main">
         <div id="page">
             <div id="loop">
-                <h1><b>CYBER</b>FICTION IS THE <b><i>REAL</i></b> <span>STORY</span> IN THE <span><i>METAVERSE.</i></span></h1>
-                <h1><b>CYBER</b>FICTION IS THE <b><i>REAL</i></b> <span>STORY</span> IN THE <span><i>METAVERSE.</i></span></h1>
-                <h1><b>CYBER</b>FICTION IS THE <b><i>REAL</i></b> <span>STORY</span> IN THE <span><i>METAVERSE.</i></span></h1>
+                <h1><b>PAUL</b> CREATES THE <b><i>STORIES</i></b> THAT <span>LIVE</span> BEYOND THE <span><i>SCREEN.</i></span></h1>
+                <h1><b>PAUL</b> CREATES THE <b><i>STORIES</i></b> THAT <span>LIVE</span> BEYOND THE <span><i>SCREEN.</i></span></h1>
+                <h1><b>PAUL</b> CREATES THE <b><i>STORIES</i></b> THAT <span>LIVE</span> BEYOND THE <span><i>SCREEN.</i></span></h1>
             </div>
-            <h3>CYBERFICTION AIMS TO BE A DECENTRALIZED COMMUNITY THAT CAN <br> CREATE NEW VALUES AND PROFITS THROUGH PLAY IN THE VIRTUAL <br> WORLD.</h3>
-            <h4>...SCROLL TO READ</h4>
+            <h3>Welcome. I’m Paul. Every project here is a piece of my story <br> Glad you’re here
             <div id="canvas-container">
                 <canvas id="hero-canvas"></canvas>
                 <!-- Removed the JOIN NOW button from here -->
@@ -286,7 +505,7 @@
         </div>
         <div id="page1">
             <div id="right-text">
-                <h3>Student About Me</h3>
+                
                 
             </div>
             <div id="left-text">
@@ -294,8 +513,8 @@
                     <br>
                     TAKE A CHANCE
                     <br>
-                    BUILD AND OWNED</h1>
-                    <h3>..AND MAINTAIN GOOD HUMANITY</h3>
+                    TO KNOW ME</h1>
+                    <h3>..THIS IS MY PERSONAL INFO</h3>
             </div>
           
             <div class="vid">
@@ -309,30 +528,32 @@
         </div>
         <div id="page2">
             <div id="text1">
-                <h3>CYBERFICTION / HAVE FUN</h3>
+                <h3>PROJECT / JOURNEY</h3>
                 <h1>LET'S
                     <br>
                     HAVE FUN
                     <br>
-                    TOGETHER</h1>
+                    LOOK AT MY <BR>PROJECTS</h1>
             </div>
             <div id="text2">
-                <p>LET'S HAVE A BLAST! LET'S JUST THROW AWAY AGE, GENDER, REGION, <br> STATUS, ETC., DON'T COMPETE, DON'T FIGHT, COOPERATE AND SHARE <br> WITH EACH OTHER AND ENJOY IT TOGETHER! SO THAT YOU CAN STAND <br> THERE IN THE NOT-TOO-DISTANT FUTURE AND DREAM OF ANOTHER NEW <br> FUTURE</p>
+               
             </div>
-            <a href="project.html" class="cta-box">JOIN COMMUNITY</a>
+            <a href="project.html" class="cta-box">
+            <video autoplay loop muted src="gif2.mp4" width="400px" height="350px"></video></a>
         </div>
         <div id="page3">
             <div id="text3">
-                <h3>CYBERFICTION / PLAYGROUND</h3>
+                <h3>CONTACT ME HERE / </h3>
                 <h1>
-                    CYBERFIELD
+                    WEBSITE
                     <br>
-                    IS OUR
+                    IS MY
                     <br>
                     PLAYGROUND
                 </h1>
             </div>
-            <a href="https://example.com/explore" class="cta-box">EXPLORE CYBERFIELD</a>
+            <a href="contact.html" class="cta-box">
+                <video autoplay loop muted src="gif3.mp4" width="400px" height="350px"></video></a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
