@@ -649,6 +649,12 @@ h1, h2, h3, h4, .serif-title {
   border-bottom: 1px solid var(--border-delicate);
   padding-bottom: 16px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.concept-nav-pills::-webkit-scrollbar {
+  display: none;
 }
 
 .concept-pill {
@@ -702,7 +708,7 @@ h1, h2, h3, h4, .serif-title {
 
 .concept-img-wrapper {
   width: 100%;
-  aspect-ratio: 1 / 3;
+  aspect-ratio: 707 / 2000;
   overflow: hidden;
   border-radius: 2px;
   background: var(--bg-charcoal);
@@ -714,7 +720,7 @@ h1, h2, h3, h4, .serif-title {
 .concept-img-wrapper img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   transition: transform 0.4s ease;
 }
@@ -1228,19 +1234,37 @@ h1, h2, h3, h4, .serif-title {
 
 @media (max-width: 768px) {
   .site-nav {
-    padding: 16px 20px;
+    padding: 14px 18px;
   }
   .nav-menu {
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-menu li:not(:last-child) {
     display: none;
   }
-  .mobile-nav-toggle {
-    display: block;
+  .nav-cta-btn {
+    padding: 6px 12px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
   }
   .section {
-    padding: 90px 20px;
+    padding: 80px 18px;
   }
   .hero-section {
-    padding: 120px 20px 70px 20px;
+    padding: 110px 18px 60px 18px;
+  }
+  .hero-mockup-frame {
+    max-width: 220px;
+  }
+  .hero-floating-caption {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -28px;
+    width: 90%;
+    max-width: 240px;
   }
   .hero-stats-row {
     flex-direction: column;
@@ -1257,10 +1281,13 @@ h1, h2, h3, h4, .serif-title {
     gap: 12px;
   }
   .philosophy-banner {
-    padding: 36px 24px;
+    padding: 32px 18px;
+  }
+  .concept-card {
+    padding: 18px;
   }
   .keepsake-column {
-    padding: 28px 20px;
+    padding: 24px 18px;
   }
   .primer-footer {
     flex-direction: column;
