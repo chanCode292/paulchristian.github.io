@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Digital Photobooth Archive · Memories</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #08090c;
+      --surface: #111318;
+      --surface-elevated: #181b22;
+      --surface-subtle: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(255, 255, 255, 0.18);
+      --text: #f8fafc;
+      --text-muted: #8e95a5;
+      --text-dim: #505668;
+      --accent: #ffffff;
+      --warning: #f59e0b;
+      --warning-bg: rgba(245, 158, 11, 0.08);
+      --danger: #ef4444;
+      --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'Space Grotesk', -apple-system, monospace;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-display);
+      padding: 32px 18px 72px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      background-image: 
+        radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 60%),
+        linear-gradient(180deg, #08090c 0%, #040507 100%);
+    }
+
+    .container {
+      max-width: 440px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 6px 0;
+    }
+
+    .brand-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .brand-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    .meta-date {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+    }
+
+    /* 72-Hour Expiration Banner */
+    .timer-card {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timer-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
+    }
+
+    .timer-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .timer-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fbbf24;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .timer-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(245, 158, 11, 0.18);
+      color: #fbbf24;
+    }
+
+    .timer-countdown {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.04em;
+    }
+
+    .timer-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Expired Screen State */
+    .expired-card {
+      display: none;
+      width: 100%;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 32px 20px;
+      text-align: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .expired-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ef4444;
+      font-family: var(--font-mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .expired-desc {
+      font-size: 13px;
+      color: #d1d5db;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+    }
+
+    .card-head {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title-num {
+      color: var(--text-dim);
+    }
+
+    .card-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* Photo Strip Container */
+    .strip-stage {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0 18px 0;
+    }
+
+    .strip-frame {
+      position: relative;
+      max-width: 220px;
+      width: 65%;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 
+        0 20px 40px -10px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .strip-frame:active {
+      transform: scale(0.98);
+    }
+
+    .strip-img {
+      width: 100%;
+      display: block;
+      height: auto;
+      background: #181b22;
+      min-height: 280px;
+    }
+
+    .save-hint {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    /* Video Player */
+    .video-stage {
+      width: 100%;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #000;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+      box-shadow: 0 12px 28px -8px rgba(0,0,0,0.6);
+    }
+
+    .bts-video {
+      width: 100%;
+      max-height: 280px;
+      display: block;
+      object-fit: cover;
+      background: #000;
+    }
+
+    /* Action Buttons */
+    .btn-primary {
+      width: 100%;
+      background: #ffffff;
+      color: #08090c;
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      padding: 14px 20px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+      background: #e5e7eb;
+    }
+
+    .btn-secondary {
+      width: 100%;
+      background: var(--surface-elevated);
+      color: var(--text);
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 14px 20px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid var(--border);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .btn-secondary:active {
+      transform: scale(0.98);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Raw Shots Grid */
+    .raw-header-note {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .raw-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      width: 100%;
+    }
+
+    .raw-item {
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface-subtle);
+      position: relative;
+      display: block;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .raw-item:active {
+      transform: scale(0.95);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .raw-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .raw-index {
+      position: absolute;
+      bottom: 3px;
+      right: 4px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      padding: 1px 4px;
+      border-radius: 3px;
+      line-height: 1.2;
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    }
+
+    .lightbox-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      max-height: 75vh;
+    }
+
+    .lightbox-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .lightbox-btn {
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface-elevated);
+      color: var(--text);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 11px;
+      line-height: 1.7;
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hashtag {
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .copyright {
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+
+    /* Loading Spinner */
+    .spinner {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      border-top-color: #ffffff;
+      animation: spin 0.8s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    #loading-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 40px 0;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand-tag">
+        <span class="brand-tag-dot"></span>
+        <span id="ev-badge">PHOTO STUDIO ARCHIVE</span>
+      </div>
+      <h1 class="title" id="ev-title">SUNSET SOIRÉE</h1>
+      <p class="meta-date" id="ev-date">SESSION ARCHIVE</p>
+    </header>
+
+    <!-- 72-Hour Expiration Live Countdown Banner -->
+    <div class="timer-card" id="timer-box">
+      <div class="timer-head">
+        <span class="timer-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          Cloud Expiration
+        </span>
+        <span class="timer-badge" id="retention-days-badge">72H LIMIT</span>
+      </div>
+      <div class="timer-countdown" id="countdown-timer">
+        --d --h --m --s
+      </div>
+      <p class="timer-desc">Photos and videos are preserved in cloud storage for 72 hours. Save them directly to your device.</p>
+    </div>
+
+    <!-- Expired Screen (Shown after 72 hours) -->
+    <div class="expired-card" id="expired-box">
+      <div class="expired-title">Session Expired</div>
+      <p class="expired-desc">This photo session has passed its 72-hour storage window. In accordance with studio privacy policy, files have been purged from cloud storage.</p>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading-stage">
+      <div class="spinner"></div>
+      <span>Loading your memories...</span>
+    </div>
+
+    <!-- Main Content (Hidden until loaded) -->
+    <div id="content-stage" style="display: none; width: 100%; flex-direction: column; gap: 20px;">
+      <!-- Section 1: Digital Photo Strip (PNG) -->
+      <section class="card">
+        <div class="card-head">
+          <div class="card-title">
+            <span class="card-title-num">01 /</span> Digital Photo Strip
+          </div>
+          <div class="card-badge">HQ PNG</div>
+        </div>
+
+        <div class="strip-stage">
+          <div class="strip-frame" onclick="openLightbox(document.getElementById('strip-preview').src, 'Photo Strip')">
+            <img id="strip-preview" class="strip-img" src="" alt="Photo Strip Preview">
+          </div>
+        </div>
+
+        <p class="save-hint">Tip: Tap and hold image to save to Photos (iOS) or Save Image (Android)</p>
+
+        <button id="dl-strip-btn" class="btn-primary" onclick="downloadAsset(stripAssetUrl, 'photobooth_strip.png')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Save Photo Strip (PNG)
+        </button>
+      </section>
+
+      <!-- Section 2: Fast-Forward BTS Video (MP4) -->
+      <section class="card" id="video-card">
+        <div class="card-head">
+          <div class="card-title">
+            <span class="card-title-num">02 /</span> Timelapse BTS Video
+          </div>
+          <div class="card-badge">60 FPS · MP4</div>
+        </div>
+
+        <div class="video-stage">
+          <video id="bts-player" class="bts-video" playsinline autoplay loop muted controls></video>
+        </div>
+
+        <button id="dl-video-btn" class="btn-secondary" onclick="downloadAsset(videoAssetUrl, 'photobooth_bts_timelapse.mp4')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Save BTS Video (MP4)
+        </button>
+      </section>
+
+      <!-- Section 3: All Captured Takes -->
+      <section class="card">
+        <div class="card-head">
+          <div class="card-title">
+            <span class="card-title-num">03 /</span> Individual Takes
+          </div>
+          <div class="card-badge" id="takes-count">8 SHOTS</div>
+        </div>
+        <p class="raw-header-note">Tap any photo below to inspect full-size or save.</p>
+        <div class="raw-grid" id="raw-grid"></div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div>Tag your memories with <span class="hashtag" id="ev-hashtag">#PhotoboothMemories</span></div>
+      <div class="copyright">Self-Photo Studio System · 24/7 Cloud Archive</div>
+    </footer>
+  </div>
+
+  <!-- Lightbox Modal for Photo Inspection -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <img id="lightbox-img" class="lightbox-img" src="" alt="Full view">
+    </div>
+    <div class="lightbox-actions" onclick="event.stopPropagation()">
+      <button class="lightbox-btn" onclick="downloadCurrentLightbox()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        Save Full Image
+      </button>
+      <button class="lightbox-btn" onclick="closeLightboxDirect()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 24/7 CLOUD ARCHIVE CONFIGURATION (Supabase Global Storage CDN)
+    // =========================================================================
+    const SUPABASE_BASE = "https://izrmwxwerueotplkiiyd.supabase.co/storage/v1/object/public/photobooth/sessions";
+
+    // 1. Resolve Session ID from URL query string (?session= or ?s=), hash (#...), or path
+    function resolveSessionId() {
+      const urlParams = new URLSearchParams(window.location.search);
+      let s = urlParams.get('session') || urlParams.get('s') || urlParams.get('id');
+      if (s) return s.trim();
+
+      if (window.location.hash && window.location.hash.length > 1) {
+        return window.location.hash.substring(1).replace(/^\/+/, '').split('/')[0].trim();
+      }
+
+      const segments = window.location.pathname.replace(/\/+$/, '').split('/');
+      const last = segments[segments.length - 1];
+      if (last && last.startsWith('session_')) {
+        return last.trim();
+      }
+      return "";
+    }
+
+    const sessionId = resolveSessionId();
+    let stripAssetUrl = "";
+    let videoAssetUrl = "";
+    let sessionCreatedAt = null;
+    let expirationTime = null;
+    let currentLightboxUrl = "";
+    let currentLightboxName = "photo.jpg";
+
+    // Parse session creation timestamp (Format: session_YYYYMMDD_HHMMSS_...)
+    function parseTimestampFromSessionId(sId) {
+      try {
+        const parts = sId.split('_');
+        if (parts.length >= 3) {
+          const dStr = parts[1]; // YYYYMMDD
+          const tStr = parts[2]; // HHMMSS
+          const year = parseInt(dStr.slice(0, 4), 10);
+          const month = parseInt(dStr.slice(4, 6), 10) - 1;
+          const day = parseInt(dStr.slice(6, 8), 10);
+          const hour = parseInt(tStr.slice(0, 2), 10);
+          const min = parseInt(tStr.slice(2, 4), 10);
+          const sec = parseInt(tStr.slice(4, 6), 10);
+          return new Date(year, month, day, hour, min, sec);
+        }
+      } catch (e) {
+        console.warn("Could not parse timestamp from session ID:", e);
+      }
+      return new Date();
+    }
+
+    // 72-Hour Live Countdown Engine
+    function startCountdownTimer(createdDate, retentionHours = 72) {
+      expirationTime = new Date(createdDate.getTime() + (retentionHours * 60 * 60 * 1000));
+
+      function tick() {
+        const now = new Date();
+        const diff = expirationTime.getTime() - now.getTime();
+
+        if (diff <= 0) {
+          // Session Expired
+          document.getElementById("timer-box").style.display = "none";
+          document.getElementById("expired-box").style.display = "flex";
+          document.getElementById("content-stage").style.display = "none";
+          document.getElementById("loading-stage").style.display = "none";
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / 1000 / 60) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        const pad = (n) => String(n).padStart(2, '0');
+        document.getElementById("countdown-timer").innerText = 
+          `${pad(days)}d ${pad(hours)}h ${pad(mins)}m ${pad(secs)}s`;
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    }
+
+    // Direct Download Helper with Mobile Fallback
+    async function downloadAsset(url, filename) {
+      if (!url) return;
+      try {
+        const btn = event?.currentTarget;
+        if (btn) btn.style.opacity = "0.7";
+
+        const response = await fetch(url);
+        const blob = await response.blob();
+        const blobUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(blobUrl);
+
+        if (btn) btn.style.opacity = "1";
+      } catch (err) {
+        // Fallback: open in new tab
+        window.open(url, "_blank");
+      }
+    }
+
+    // Lightbox Modal Controls
+    function openLightbox(url, name) {
+      currentLightboxUrl = url;
+      currentLightboxName = name ? `${name}.jpg` : "photo.jpg";
+      document.getElementById("lightbox-img").src = url;
+      document.getElementById("lightbox").style.display = "flex";
+    }
+
+    function closeLightboxDirect() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+
+    function closeLightbox(e) {
+      if (e.target.id === "lightbox") {
+        closeLightboxDirect();
+      }
+    }
+
+    function downloadCurrentLightbox() {
+      downloadAsset(currentLightboxUrl, currentLightboxName);
+    }
+
+    // Main 24/7 Data Loader
+    async function initPortal() {
+      if (!sessionId) {
+        document.getElementById("loading-stage").innerHTML = 
+          `<p style="color:#ef4444; font-size:14px;">No session specified in URL.<br><small style="color:var(--text-dim);">Please scan the QR code printed on your photo strip.</small></p>`;
+        return;
+      }
+
+      sessionCreatedAt = parseTimestampFromSessionId(sessionId);
+      const sessionBase = `${SUPABASE_BASE}/${sessionId}`;
+      stripAssetUrl = `${sessionBase}/strip_single.png`;
+      videoAssetUrl = `${sessionBase}/posing_video.mp4`;
+
+      // Try fetching metadata.json from Supabase
+      let meta = null;
+      try {
+        const metaRes = await fetch(`${sessionBase}/metadata.json`);
+        if (metaRes.ok) {
+          meta = await metaRes.json();
+        }
+      } catch (e) {
+        console.log("metadata.json not present, using session heuristic.");
+      }
+
+      if (meta) {
+        if (meta.event_name) document.getElementById("ev-title").innerText = meta.event_name;
+        if (meta.event_subtitle) document.getElementById("ev-badge").innerText = meta.event_subtitle.toUpperCase();
+        if (meta.event_date) document.getElementById("ev-date").innerText = `SESSION · ${meta.event_date}`;
+        if (meta.event_hashtag) document.getElementById("ev-hashtag").innerText = meta.event_hashtag;
+        if (meta.created_at) sessionCreatedAt = new Date(meta.created_at);
+      } else {
+        const year = sessionCreatedAt.getFullYear();
+        const month = String(sessionCreatedAt.getMonth() + 1).padStart(2, '0');
+        const day = String(sessionCreatedAt.getDate()).padStart(2, '0');
+        document.getElementById("ev-date").innerText = `SESSION · ${year}.${month}.${day}`;
+      }
+
+      // Start 72-hour countdown timer
+      const retentionHours = meta?.retention_hours || 72;
+      startCountdownTimer(sessionCreatedAt, retentionHours);
+
+      // Check if already expired
+      const now = new Date();
+      if (now.getTime() > (sessionCreatedAt.getTime() + retentionHours * 3600 * 1000)) {
+        return; // already expired
+      }
+
+      // Setup Photo Strip
+      const stripImg = document.getElementById("strip-preview");
+      stripImg.src = stripAssetUrl;
+      stripImg.onerror = function() {
+        // Fallback if testing locally on the photobooth kiosk
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+          stripImg.src = `/static/sessions/${sessionId}/strip_single.png`;
+          stripAssetUrl = stripImg.src;
+        }
+      };
+
+      // Setup BTS Video
+      const videoEl = document.getElementById("bts-player");
+      videoEl.src = videoAssetUrl;
+      videoEl.onerror = function() {
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+          videoEl.src = `/static/sessions/${sessionId}/posing_video.mp4`;
+          videoAssetUrl = videoEl.src;
+        } else {
+          document.getElementById("video-card").style.display = "none";
+        }
+      };
+
+      // Setup Raw Takes (1 to 8)
+      const rawGrid = document.getElementById("raw-grid");
+      rawGrid.innerHTML = "";
+      const takesList = meta?.takes || ["take_1.jpg", "take_2.jpg", "take_3.jpg", "take_4.jpg", "take_5.jpg", "take_6.jpg", "take_7.jpg", "take_8.jpg"];
+      document.getElementById("takes-count").innerText = `${takesList.length} SHOTS`;
+
+      takesList.forEach((filename, idx) => {
+        const takeUrl = `${sessionBase}/${filename}`;
+        const item = document.createElement("div");
+        item.className = "raw-item";
+        const num = String(idx + 1).padStart(2, '0');
+        item.innerHTML = `<img src="${takeUrl}" loading="lazy" alt="Shot ${num}"><span class="raw-index">${num}</span>`;
+        item.onclick = () => openLightbox(takeUrl, `take_${num}`);
+        rawGrid.appendChild(item);
+      });
+
+      // Done loading
+      document.getElementById("loading-stage").style.display = "none";
+      document.getElementById("content-stage").style.display = "flex";
+    }
+
+    initPortal();
+  </script>
+</body>
+</html>
